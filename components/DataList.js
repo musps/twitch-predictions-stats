@@ -31,7 +31,7 @@ function TableTopPredictors({ color, colorName }) {
                 key={index}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900 dark:text-gray-400">
-                    {predictor.user.displayName}
+                    {predictor.user?.displayName || 'Undefined user'}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
