@@ -42,7 +42,7 @@ npm run build
 
 - All API responses are cached server side and cleared on new updates
 - Predictions data is retrieved each 15/minutes with a cronjob
--
+- (...)
 
 ### Improvements
 
