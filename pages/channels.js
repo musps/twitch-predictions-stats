@@ -1,7 +1,10 @@
-import Page from '../components/Page'
-import { initializeApollo, addApolloState } from '../lib/apolloClient'
-import Channels, { GET_CHANNELS_QUERY } from '../components/Channels'
-import { APP_IS_BUILDING } from '../lib/app'
+import {
+  initializeApollo,
+  addApolloState,
+  APP_IS_BUILDING,
+} from 'lib/apolloClient'
+import Page from 'components/Page'
+import Channels, { GET_CHANNELS_QUERY } from 'components/Channels'
 
 export async function getStaticProps() {
   const apolloClient = initializeApollo()

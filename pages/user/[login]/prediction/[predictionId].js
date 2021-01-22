@@ -1,23 +1,14 @@
-import { Fragment } from 'react'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useQuery, NetworkStatus, gql } from '@apollo/client'
-import DataCard from '../../../../components/DataCard'
-import Page from '../../../../components/Page'
-import Channel from '../../../../components/Channel'
+import { useQuery, gql } from '@apollo/client'
+import { PredictionNodes } from 'components/Prediction'
+import Page from 'components/Page'
+import Channel from 'components/Channel'
 import {
   UserNotFound,
   UserError,
   UserLoading,
-} from '../../../../components/UserActionMessage'
-
-import {
-  formatRatio,
-  formatNumber,
-  formatThousands,
-} from '../../../../lib/numbers'
-import { Channel as ChannelFragments } from '../../../../lib/fragments'
-import { initializeApollo, addApolloState } from '../../../../lib/apolloClient'
+} from 'components/UserActionMessage'
+import { Channel as ChannelFragments } from 'lib/fragments'
 
 const PREDICTIONS_QUERY = gql`
   ${ChannelFragments.Prediction}
@@ -31,31 +22,22 @@ const PREDICTIONS_QUERY = gql`
   }
 `
 
-function UserPage({ defaultLogin }) {
-  const router = useRouter()
-  const { login, predictionId } = router.query
+function UserPredictionPage() {
+  const { query, push } = useRouter()
+  const { login, predictionId } = query
   const { loading, error, data } = useQuery(PREDICTIONS_QUERY, {
     variables: {
-      login: login,
+      login,
       predictionId,
     },
+    skip: !login && !predictionId,
   })
 
-  const goBack = () => {
-    const { login } = router.query
-
-    router.push(`/user/${login}`)
-  }
-
+  const goBack = () => push(`/user/${login}`)
   const { channel } = data || {}
 
-  console.log({ login, defaultLogin })
   return (
-    <Page>
-      <Head>
-        <title>User: {login}</title>
-      </Head>
-
+    <Page title={login}>
       <Channel login={login}>
         {loading && <UserLoading />}
         {!loading && error && <UserError />}
@@ -75,7 +57,7 @@ function UserPage({ defaultLogin }) {
               </button>
             </div>
 
-            <DataCard
+            <PredictionNodes
               nodes={channel?.prediction ? [channel.prediction] : []}
               fullMode={true}
             />
@@ -86,4 +68,4 @@ function UserPage({ defaultLogin }) {
   )
 }
 
-export default UserPage
+export default UserPredictionPage

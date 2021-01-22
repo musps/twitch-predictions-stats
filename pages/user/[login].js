@@ -1,17 +1,16 @@
 import { Fragment } from 'react'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { stringify } from 'query-string'
-import { useQuery, NetworkStatus, gql } from '@apollo/client'
-import DataCard from '../../components/DataCard'
-import Page from '../../components/Page'
-import Channel from '../../components/Channel'
+import { useQuery, gql } from '@apollo/client'
+import { Channel as ChannelFragments } from 'lib/fragments'
+import Page from 'components/Page'
+import Channel from 'components/Channel'
 import {
   UserNotFound,
   UserError,
   UserLoading,
-} from '../../components/UserActionMessage'
-import { Channel as ChannelFragments } from '../../lib/fragments'
+} from 'components/UserActionMessage'
+import { PredictionNodes } from 'components/Prediction'
 
 const PREDICTIONS_QUERY = gql`
   ${ChannelFragments.Prediction}
@@ -43,7 +42,7 @@ const parseFilter = (value = '', defautlValue = 'LATEST') => {
   return defautlValue
 }
 
-function UserPage({ defaultLogin }) {
+function UserPage() {
   const router = useRouter()
   const { login, filter } = router.query
   const filterTag = parseFilter(filter)
@@ -52,10 +51,11 @@ function UserPage({ defaultLogin }) {
     PREDICTIONS_QUERY,
     {
       variables: {
-        login: login || defaultLogin,
+        login: login,
         filter: filterTag,
         page: 1,
       },
+      skip: !login,
     }
   )
 
@@ -101,16 +101,13 @@ function UserPage({ defaultLogin }) {
   const { channel } = data || {}
 
   return (
-    <Page>
-      <Head>
-        <title>User: {login}</title>
-      </Head>
-
+    <Page title={login}>
       <Channel login={login}>
         {loading && <UserLoading />}
         {error && <UserError />}
-        {!loading && !error && !channel && <UserNotFound />}
-        {!loading && !error && (
+        {!loading && !error && !channel ? (
+          <UserNotFound />
+        ) : (
           <Fragment>
             <div className="flex items-center justify-between">
               <h1 className="text-xl">Predictions</h1>
@@ -128,7 +125,7 @@ function UserPage({ defaultLogin }) {
               </label>
             </div>
 
-            <DataCard nodes={channel?.predictions?.nodes} />
+            <PredictionNodes nodes={channel?.predictions?.nodes} />
 
             {channel?.predictions?.hasNextPage && (
               <button
@@ -143,14 +140,6 @@ function UserPage({ defaultLogin }) {
       </Channel>
     </Page>
   )
-}
-
-UserPage.getInitialProps = async ({ query }) => {
-  const { login } = query
-
-  return {
-    defaultLogin: login,
-  }
 }
 
 export default UserPage

@@ -1,10 +1,10 @@
 import { Fragment, useState } from 'react'
-import Link from 'next/link'
 import cs from 'classnames'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { formatNumber, sumOutcomes } from '../lib/numbers'
+import { formatNumber, sumOutcomes } from 'lib/helpers'
 import UserActionMessage from './UserActionMessage'
 import { ListeTopPredictors, DescriptionItem } from './DataList'
 
@@ -196,7 +196,7 @@ function ToggleButton({ open, onClick }) {
   )
 }
 
-function NodePrediction({ node, fullMode = false }) {
+function PredictionNode({ node, fullMode = false }) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const outcomes = sumOutcomes(node.outcomes)
@@ -349,11 +349,11 @@ function NodePrediction({ node, fullMode = false }) {
   )
 }
 
-function Nodes({ nodes = [], fullMode = false }) {
+export function PredictionNodes({ nodes = [], fullMode = false }) {
   return (
     <div>
       {nodes.map((node) => (
-        <NodePrediction key={node.id} node={node} fullMode={fullMode} />
+        <PredictionNode key={node.id} node={node} fullMode={fullMode} />
       ))}
 
       {!nodes.length && <UserActionMessage message="No matches found" />}
@@ -361,4 +361,4 @@ function Nodes({ nodes = [], fullMode = false }) {
   )
 }
 
-export default Nodes
+export default PredictionNode

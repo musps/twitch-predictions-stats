@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../lib/apolloClient'
+import { useApollo } from 'lib/apolloClient'
 import 'tailwindcss/tailwind.css'
 
 export default function App({ Component, pageProps }) {
