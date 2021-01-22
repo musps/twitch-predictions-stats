@@ -1,5 +1,5 @@
-import Page from '../components/Page'
-import UserActionMessage from '../components/UserActionMessage'
+import Page from 'components/Page'
+import UserActionMessage from 'components/UserActionMessage'
 
 export default function FourOhFourPage() {
   return (

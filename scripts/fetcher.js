@@ -4,7 +4,7 @@ import {
   initializeChannel,
   updateChannelPredictions,
   updateChannelsPredictions,
-} from '../lib/fetcher/lib'
+} from '../lib/fetcher/commands'
 
 const options = yargs
   .option('u', {
