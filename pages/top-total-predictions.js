@@ -12,25 +12,14 @@ import {
   UserLoading,
 } from 'components/UserActionMessage'
 
-const GET_TOP_WINNERS_QUERY = gql`
-  query GetTopWinners {
-    topWinners {
+const GET_TOP_TOTAL_PREDICTIONS_QUERY = gql`
+  query GetTopTotalPredictions {
+    topTotalPredictions {
+      totalPredictions
       channel {
         id
         displayName
         profileImageURL
-      }
-      prediction {
-        id
-        title
-      }
-      pointsWon
-      ratio
-      winner {
-        points
-        user {
-          displayName
-        }
       }
     }
   }
@@ -41,7 +30,7 @@ export async function getStaticProps() {
 
   if (!APP_IS_BUILDING) {
     const response = await apolloClient.query({
-      query: GET_TOP_WINNERS_QUERY,
+      query: GET_TOP_TOTAL_PREDICTIONS_QUERY,
     })
   }
 
@@ -51,14 +40,14 @@ export async function getStaticProps() {
   })
 }
 
-function TopWinnersPage() {
-  const { loading, error, data } = useQuery(GET_TOP_WINNERS_QUERY)
-  const { topWinners = [] } = data || {}
+function TopTotalPredictionsPage() {
+  const { loading, error, data } = useQuery(GET_TOP_TOTAL_PREDICTIONS_QUERY)
+  const { topTotalPredictions = [] } = data || {}
 
   return (
-    <Page title="Top winners">
+    <Page title="Top total predictions">
       <div className="pb-4">
-        <h2 className="text-xl">Top 20 biggest winners</h2>
+        <h2 className="text-xl">Top 20 total predictions</h2>
       </div>
 
       {loading && <UserLoading />}
@@ -71,35 +60,27 @@ function TopWinnersPage() {
                 <th
                   scope="col"
                   className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
+                  #
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
                   Channel
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
-                  Winner
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
-                  Points bet
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
-                  Ratio
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 dark:text-white uppercase">
-                  Total points
+                  Total predictions
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200">
-              {topWinners.map((item) => (
+              {topTotalPredictions.map((item, index) => (
                 <tr
-                  key={item.prediction.id}
+                  key={item.channel.id}
                   className="transition-all hover:bg-gray-100 hover:shadow-lg dark:hover:bg-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 w-10 h-10">
@@ -119,34 +100,12 @@ function TopWinnersPage() {
                             {item.channel.displayName}
                           </a>
                         </div>
-                        <div className="text-sm text-gray-500">
-                          <a
-                            href={`/user/${item.channel.displayName}/prediction/${item.prediction.id}`}
-                            target="_blank">
-                            View prediction
-                          </a>
-                        </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900 dark:text-gray-400">
-                      {item.winner.user.displayName}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900 dark:text-gray-400">
-                      {formatThousands(item.winner.points)}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
                     <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                      {item.ratio}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                      {formatThousands(item.pointsWon)}
+                      {item.totalPredictions}
                     </span>
                   </td>
                 </tr>
@@ -159,4 +118,4 @@ function TopWinnersPage() {
   )
 }
 
-export default TopWinnersPage
+export default TopTotalPredictionsPage
