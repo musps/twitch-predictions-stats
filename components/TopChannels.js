@@ -13,10 +13,11 @@ export const GET_TOP_CHANNELS_QUERY = gql`
   }
 `
 
-function CardButton({ href, text, blank = false }) {
+function CardButton({ testId, href, text, blank = false }) {
   return (
     <Link href={href}>
       <a
+        data-testid={testId}
         target={blank ? '_blank' : null}
         rel={blank ? 'noreferrer' : null}
         className="bg-white p-4 transition-shadow border rounded-lg shadow-sm hover:shadow dark:border-gray-800 dark:bg-gray-800">
@@ -32,6 +33,7 @@ function ChannelCard({ channel }) {
   return (
     <Link href={`/user/${channel.displayName}`}>
       <a
+        data-testid="channel-card"
         title={`Go to ${channel.displayName} page`}
         className="bg-white p-4 transition-shadow border rounded-lg shadow-sm hover:shadow dark:border-gray-800 dark:bg-gray-800">
         <div className="flex items-center h-full">
@@ -62,8 +64,11 @@ function TopChannels({ login, children }) {
       {loading && <UserLoading />}
       {error && <UserError />}
       {topChannels.length !== 0 && (
-        <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2 lg:grid-cols-4">
+        <div
+          data-testid="channels-list"
+          className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2 lg:grid-cols-4">
           <CardButton
+            testId="btn-add-channel"
             text="Add your channel"
             href={process.env.NEXT_PUBLIC_GOOGLE_FORM_ADD_CHANNEL}
             blank={true}
@@ -71,7 +76,11 @@ function TopChannels({ login, children }) {
           {topChannels.map((channel) => (
             <ChannelCard key={channel.id} channel={channel} />
           ))}
-          <CardButton text="Show more" href="/channels" />
+          <CardButton
+            testId="btn-show-more"
+            text="Show more"
+            href="/channels"
+          />
         </div>
       )}
     </div>
