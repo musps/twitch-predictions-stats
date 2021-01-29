@@ -4,6 +4,7 @@ import {
   test__GetChannelsGames,
   test__UpdateChannelsGames,
 } from '../lib/fetcher/commands-channel-videos'
+import { generatePredictionWithHisGame } from '../lib/fetcher/predictions-games'
 
 async function init() {
   try {
@@ -13,8 +14,10 @@ async function init() {
       useCreateIndex: true,
     })
 
-    const res = await test__GetChannelGames('gotaga')
+    // const res = await test__GetChannelGames('kamet0')
     // const res = await test__UpdateChannelsGames()
+
+    const res = await generatePredictionWithHisGame().exec()
 
     console.log({ res })
     process.exit(0)
@@ -25,15 +28,3 @@ async function init() {
 }
 
 init()
-
-// const getDateInSecondes = (strData) => new Date(strData).getTime() / 1000
-
-// const baseDate = getDateInSecondes('2020-12-10T18:53:13Z')
-// const predictionDate = getDateInSecondes('2021-01-21T01:31:39.29388387Z')
-// console.log({ baseDate, predictionDate })
-
-// Limiter les vidéos à novembre 2020
-
-// zerator
-// ogaming
-// RocketLeague
