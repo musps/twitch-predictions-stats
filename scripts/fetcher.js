@@ -36,7 +36,7 @@ const options = yargs
     alias: 'ignoreExisting',
     describe: 'Ignore existing predictions game',
     type: 'boolean',
-    demandOption: true,
+    default: true,
   })
   .option('u', {
     alias: 'update',
