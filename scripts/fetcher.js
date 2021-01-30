@@ -5,16 +5,25 @@ import {
   updateChannelPredictions,
   updateChannelsPredictions,
 } from '../lib/fetcher/commands'
+import {
+  updateChannelsVideos,
+  updateChannelVideos,
+} from '../lib/fetcher/features/fetch-videos'
+import {
+  updateChannelsPredictionsGame,
+  updateChannelPredictionsGame,
+  updateGames,
+} from '../lib/fetcher/features/fetch-games'
 
 const options = yargs
-  .option('u', {
-    alias: 'update',
+  .option('p', {
+    alias: 'predictions',
     describe: 'Update latest predictions',
     type: 'boolean',
   })
-  .option('a', {
-    alias: 'add',
-    describe: 'Add & fetch a new channel',
+  .option('v', {
+    alias: 'videosAndGames',
+    describe: 'Update latest videos and games',
     type: 'boolean',
   })
   .option('l', {
@@ -22,6 +31,22 @@ const options = yargs
     describe: 'Twitch channel login',
     type: 'string',
     demandOption: false,
+  })
+  .option('i', {
+    alias: 'ignoreExisting',
+    describe: 'Ignore existing predictions game',
+    type: 'boolean',
+    demandOption: true,
+  })
+  .option('u', {
+    alias: 'update',
+    describe: 'Update latest predictions',
+    type: 'boolean',
+  })
+  .option('a', {
+    alias: 'add',
+    describe: 'Add and fetch a new channel',
+    type: 'boolean',
   }).argv
 
 async function init() {
@@ -33,18 +58,58 @@ async function init() {
     })
 
     let res
-    const { login, update, add } = options
+    const {
+      videosAndGames,
+      predictions,
+      login,
+      ignoreExisting,
+      update,
+      add,
+    } = options
+    const isLogin = login !== null && login !== undefined
 
-    if (update) {
-      if (login) {
-        res = await updateChannelPredictions(login)
-      } else {
-        res = await updateChannelsPredictions()
-      }
-    }
-
-    if (login && add) {
-      res = await initializeChannel(login, false)
+    switch (true) {
+      case videosAndGames === true:
+        switch (true) {
+          case isLogin:
+            // 1: Fetch latest videos
+            console.log('- updateChannelVideos')
+            console.log(await updateChannelVideos(login))
+            // 2: Sync predictions with games
+            console.log('- updateChannelPredictionsGame')
+            console.log(
+              await updateChannelPredictionsGame(login, ignoreExisting)
+            )
+            // 3: Fetch latest games
+            console.log('- updateGames')
+            console.log(await updateGames())
+            break
+          default:
+            // 1: Fetch latest videos
+            console.log('- updateChannelsVideos')
+            await updateChannelsVideos()
+            // 2: Sync predictions with games
+            console.log('- updateChannelsPredictionsGame')
+            await updateChannelsPredictionsGame(ignoreExisting)
+            // 3: Fetch latest games
+            console.log('- updateGames')
+            await updateGames()
+            break
+        }
+        break
+      case predictions === true:
+        switch (true) {
+          case isLogin && add:
+            res = await initializeChannel(login, false)
+            break
+          case isLogin && update:
+            res = await updateChannelPredictions(login)
+            break
+          case update:
+            res = await updateChannelsPredictions()
+            break
+        }
+        break
     }
 
     console.log({ res })

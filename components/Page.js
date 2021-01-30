@@ -49,7 +49,11 @@ function Page({ title, children }) {
         <div className="border-b shadow-bot dark:border-gray-800">
           <ul className="flex flex-row px-2 list-none select-none overflow-y-scroll">
             <FastLink title="Top winners" current={false} href="/top-winners" />
-            <FastLink title="Top total predictions" current={false} href="/top-total-predictions" />
+            <FastLink
+              title="Top total predictions"
+              current={false}
+              href="/top-total-predictions"
+            />
             <FastLink title="Channels" current={false} href="/channels" />
             <FastLink title="Contact" current={false} href="/contact" />
           </ul>
