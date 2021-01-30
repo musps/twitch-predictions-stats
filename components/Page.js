@@ -49,9 +49,12 @@ function Page({ title, children }) {
         <div className="border-b shadow-bot dark:border-gray-800">
           <ul className="flex flex-row px-2 list-none select-none overflow-y-scroll">
             <FastLink title="Top winners" current={false} href="/top-winners" />
-            <FastLink title="Top total predictions" current={false} href="/top-total-predictions" />
+            <FastLink
+              title="Top total predictions"
+              current={false}
+              href="/top-total-predictions"
+            />
             <FastLink title="Channels" current={false} href="/channels" />
-            <FastLink title="Contact" current={false} href="/contact" />
           </ul>
         </div>
 
@@ -98,8 +101,11 @@ function Page({ title, children }) {
       <main className="flex-1 max-h-full p-5">{children}</main>
 
       <footer className="mt-5 p-5 border-t flex flex-row justify-between dark:border-gray-800">
-        <a className="text-gray-500" href="/contact">
-          Contact
+        <a
+          className="text-gray-500"
+          href="https://github.com/musps/twitch-predictions-stats"
+          target="_blank">
+          @github
         </a>
         <p className="text-gray-500">Twitch Predictions Stats © 2020</p>
       </footer>

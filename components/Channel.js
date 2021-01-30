@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
 import Router from 'next/router'
+import Link from 'next/link'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { gql, useQuery } from '@apollo/client'
 import { Channel as ChannelFragments } from 'lib/fragments'
 import { formatNumber, formatThousands, getMostPointsWon } from 'lib/helpers'
 import { InformationCard, InformationsCard } from './InformationCards'
-import { UserNotFound, UserLoading } from './UserActionMessage'
+import UserActionMessage, { UserLoading } from './UserActionMessage'
 
 dayjs.extend(relativeTime)
 
@@ -64,7 +65,27 @@ function Channel({ login, children }) {
   return (
     <Fragment>
       {loading && <UserLoading />}
-      {channelNotFound && <UserNotFound />}
+      {channelNotFound && (
+        <Fragment>
+          <UserActionMessage message="Channel not tracked" />
+          <div className="flex-grow flex items-center content-center justify-center flex-col m-8">
+            <p className="text-center pb-3">
+              We only track a specific set of channels
+              <br />
+              If you wish to add this channel, you can request it
+            </p>
+
+            <Link href={process.env.NEXT_PUBLIC_GOOGLE_FORM_ADD_CHANNEL}>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-gray-200 rounded hover:bg-opacity-20 dark:bg-gray-800">
+                Make a request
+              </a>
+            </Link>
+          </div>
+        </Fragment>
+      )}
       {channel && (
         <div className="flex flex-row items-start justify-between pb-6 space-x-4 border-b dark:border-gray-800 items-center">
           <div className="relative w-24 h-24">
