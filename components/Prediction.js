@@ -209,13 +209,14 @@ function PredictionNode({ node, fullMode = false }) {
   }
 
   const isOpen = fullMode || open
-  const { createdBy, endedBy, lockedBy } = node
+  const { createdBy, endedBy, lockedBy, game } = node
 
   return (
     <div className="bg-white my-4 border dark:border-gray-800 rounded-lg transition-shadow shadow-sm hover:shadow-lg dark:bg-gray-800">
       <div className="flex shadow rounded-t-lg">
         <h2 className="flex flex-col flex-grow p-3 bg-gray-100 text-lg font-bold rounded-tl-lg cursor-pointer dark:bg-gray-800">
           {node.title}
+          {game && <span className="text-xs font-medium">{game.name}</span>}
           <span className="text-xs font-medium">
             {dayjs(node.createdAt).fromNow()}
           </span>
