@@ -8,7 +8,9 @@ const UserActionMessage = ({ message }) => (
 export const UserNotFound = () => (
   <UserActionMessage message="No matches found" />
 )
+
 export const UserError = () => <UserActionMessage message="Error!" />
+
 export const UserLoading = () => <UserActionMessage message="Loading..." />
 
 export default UserActionMessage

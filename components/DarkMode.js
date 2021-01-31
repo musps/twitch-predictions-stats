@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react'
 
-const THEME = {
+export const LS_KEY = 'theme'
+
+export const THEME = {
   DARK: 'dark',
   LIGHT: 'light',
 }
 
 const setTheme = (enabled) => {
   if (enabled) {
-    localStorage.setItem('theme', THEME.DARK)
-    document.querySelector('html').classList.add(THEME.DARK)
+    localStorage.setItem(LS_KEY, THEME.DARK)
+    document.querySelector('body').classList.add(THEME.DARK)
   } else {
-    localStorage.setItem('theme', THEME.LIGHT)
-    document.querySelector('html').classList.remove(THEME.DARK)
+    localStorage.setItem(LS_KEY, THEME.LIGHT)
+    document.querySelector('body').classList.remove(THEME.DARK)
   }
 }
 
@@ -24,7 +26,7 @@ function DarkMode() {
   }
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme') || THEME.DARK
+    const theme = localStorage.getItem(LS_KEY) || THEME.DARK
     const nextTheme = theme === THEME.DARK
 
     setEnabled(nextTheme)
