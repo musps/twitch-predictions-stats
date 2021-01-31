@@ -1,0 +1,557 @@
+[
+  {
+    "title": "Qui va Win ?",
+    "id": "92b970eb-4d9a-4105-8a72-5ea3b6a887ae",
+    "createdAt": "2021-01-22T13:26:36.730914521Z",
+    "endedAt": "2021-01-22T14:07:36.461857989Z",
+    "lockedAt": "2021-01-22T13:28:35.794699645Z",
+    "predictionWindowSeconds": 120,
+    "status": "RESOLVED",
+    "createdBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "lockedBy": {
+      "id": null,
+      "displayName": null
+    },
+    "endedBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "outcomes": [
+      {
+        "id": "2cf49417-869f-498d-acc4-9e42bd99499f",
+        "title": "TEAM WAKZ",
+        "color": "BLUE",
+        "totalPoints": 2060674,
+        "totalUsers": 117,
+        "ratio": 1.77,
+        "winner": true,
+        "topPredictors": [
+          {
+            "points": 250000,
+            "user": {
+              "id": "481803990",
+              "displayName": "0tekal"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "78049588",
+              "displayName": "Falco92i"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "32537949",
+              "displayName": "Slaelia"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "144255487",
+              "displayName": "nocyde83"
+            }
+          },
+          {
+            "points": 200000,
+            "user": {
+              "id": "123324022",
+              "displayName": "sokanuchan"
+            }
+          },
+          {
+            "points": 65697,
+            "user": {
+              "id": "77185672",
+              "displayName": "FireKiing"
+            }
+          },
+          {
+            "points": 50010,
+            "user": {
+              "id": "438445597",
+              "displayName": "archangeless"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "80863070",
+              "displayName": "Anacrox974"
+            }
+          },
+          {
+            "points": 44461,
+            "user": {
+              "id": "124535889",
+              "displayName": "LG217"
+            }
+          },
+          {
+            "points": 40010,
+            "user": {
+              "id": "107837542",
+              "displayName": "savanon"
+            }
+          }
+        ]
+      },
+      {
+        "id": "1e948693-1692-4147-a8c6-bade49a167bd",
+        "title": "TEAM MECHANT",
+        "color": "PINK",
+        "totalPoints": 1594655,
+        "totalUsers": 91,
+        "ratio": 2.29,
+        "winner": false,
+        "topPredictors": [
+          {
+            "points": 250000,
+            "user": {
+              "id": "80495621",
+              "displayName": "khtulhu"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "202687066",
+              "displayName": "PtitBlitzBelge"
+            }
+          },
+          {
+            "points": 200000,
+            "user": {
+              "id": "52225813",
+              "displayName": "tocogn"
+            }
+          },
+          {
+            "points": 80000,
+            "user": {
+              "id": "159182670",
+              "displayName": "Scolzy"
+            }
+          },
+          {
+            "points": 72500,
+            "user": {
+              "id": "87710913",
+              "displayName": "rudeboy_93"
+            }
+          },
+          {
+            "points": 70000,
+            "user": {
+              "id": "114782839",
+              "displayName": "Ware03"
+            }
+          },
+          {
+            "points": 60000,
+            "user": {
+              "id": "141458520",
+              "displayName": "baahmuth"
+            }
+          },
+          {
+            "points": 55758,
+            "user": {
+              "id": "123520552",
+              "displayName": "Arshann"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "478884569",
+              "displayName": "KarmaaJF"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "74972819",
+              "displayName": "IMakeTheDAB"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Qui va Win ?",
+    "id": "e7be2075-40b4-4f6d-af4b-8c1170928602",
+    "createdAt": "2021-01-22T12:43:46.121139706Z",
+    "endedAt": "2021-01-22T13:20:56.532578596Z",
+    "lockedAt": "2021-01-22T12:45:45.190186596Z",
+    "predictionWindowSeconds": 120,
+    "status": "RESOLVED",
+    "createdBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "lockedBy": {
+      "id": null,
+      "displayName": null
+    },
+    "endedBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "outcomes": [
+      {
+        "id": "89342feb-9e96-4c4c-a870-822a0e8fe861",
+        "title": "TEAM WAKZ",
+        "color": "BLUE",
+        "totalPoints": 1789557,
+        "totalUsers": 149,
+        "ratio": 1.9,
+        "winner": true,
+        "topPredictors": [
+          {
+            "points": 250000,
+            "user": {
+              "id": "402267737",
+              "displayName": "LaFrenchBaguettee"
+            }
+          },
+          {
+            "points": 243162,
+            "user": {
+              "id": "147422673",
+              "displayName": "Nauvyx"
+            }
+          },
+          {
+            "points": 143010,
+            "user": {
+              "id": "259603127",
+              "displayName": "ajamou"
+            }
+          },
+          {
+            "points": 100000,
+            "user": {
+              "id": "202892964",
+              "displayName": "mrbcu"
+            }
+          },
+          {
+            "points": 100000,
+            "user": {
+              "id": "124136981",
+              "displayName": "HerrBramard"
+            }
+          },
+          {
+            "points": 100000,
+            "user": {
+              "id": "149807552",
+              "displayName": "99yose"
+            }
+          },
+          {
+            "points": 60000,
+            "user": {
+              "id": "141458520",
+              "displayName": "baahmuth"
+            }
+          },
+          {
+            "points": 55555,
+            "user": {
+              "id": "181570210",
+              "displayName": "nalik7"
+            }
+          },
+          {
+            "points": 40000,
+            "user": {
+              "id": "114782839",
+              "displayName": "Ware03"
+            }
+          },
+          {
+            "points": 40000,
+            "user": {
+              "id": "165437767",
+              "displayName": "Erwan_sa"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bef3b9ab-f741-4680-b2bf-798638bea7e9",
+        "title": "TEAM MECHANT",
+        "color": "PINK",
+        "totalPoints": 1611910,
+        "totalUsers": 88,
+        "ratio": 2.11,
+        "winner": false,
+        "topPredictors": [
+          {
+            "points": 250000,
+            "user": {
+              "id": "83461786",
+              "displayName": "Pryg"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "113370629",
+              "displayName": "Gemalalathet"
+            }
+          },
+          {
+            "points": 100000,
+            "user": {
+              "id": "52225813",
+              "displayName": "tocogn"
+            }
+          },
+          {
+            "points": 100000,
+            "user": {
+              "id": "80495621",
+              "displayName": "khtulhu"
+            }
+          },
+          {
+            "points": 99396,
+            "user": {
+              "id": "86712676",
+              "displayName": "Syavel"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "179186121",
+              "displayName": "durstache"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "83350009",
+              "displayName": "iPreludeR34"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "62196604",
+              "displayName": "grodede"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "41702795",
+              "displayName": "Kikykioko"
+            }
+          },
+          {
+            "points": 40000,
+            "user": {
+              "id": "45165848",
+              "displayName": "sunsy6"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Qui va Win ?",
+    "id": "73fc0796-95c5-4391-80b9-2ba25ceafc02",
+    "createdAt": "2021-01-22T12:04:44.961572229Z",
+    "endedAt": "2021-01-22T12:30:19.551869354Z",
+    "lockedAt": "2021-01-22T12:06:44.034150966Z",
+    "predictionWindowSeconds": 120,
+    "status": "RESOLVED",
+    "createdBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "lockedBy": {
+      "id": null,
+      "displayName": null
+    },
+    "endedBy": {
+      "id": "103762288",
+      "displayName": "WakzLoL"
+    },
+    "outcomes": [
+      {
+        "id": "af7d1708-efd2-40cb-8182-817645c51f5a",
+        "title": "TEAM WAKZ",
+        "color": "BLUE",
+        "totalPoints": 1694825,
+        "totalUsers": 70,
+        "ratio": 1.25,
+        "winner": false,
+        "topPredictors": [
+          {
+            "points": 250000,
+            "user": {
+              "id": "610353567",
+              "displayName": "daamso0"
+            }
+          },
+          {
+            "points": 250000,
+            "user": {
+              "id": "80495621",
+              "displayName": "khtulhu"
+            }
+          },
+          {
+            "points": 161900,
+            "user": {
+              "id": "402267737",
+              "displayName": "LaFrenchBaguettee"
+            }
+          },
+          {
+            "points": 134000,
+            "user": {
+              "id": "113359686",
+              "displayName": "gnphil80"
+            }
+          },
+          {
+            "points": 100010,
+            "user": {
+              "id": "149807552",
+              "displayName": "99yose"
+            }
+          },
+          {
+            "points": 90000,
+            "user": {
+              "id": "74378910",
+              "displayName": "sniprok"
+            }
+          },
+          {
+            "points": 63000,
+            "user": {
+              "id": "136483584",
+              "displayName": "tedschmosbyyy"
+            }
+          },
+          {
+            "points": 51630,
+            "user": {
+              "id": "74972819",
+              "displayName": "IMakeTheDAB"
+            }
+          },
+          {
+            "points": 50000,
+            "user": {
+              "id": "525010274",
+              "displayName": "sacrifice2poulet"
+            }
+          },
+          {
+            "points": 42000,
+            "user": {
+              "id": "567017050",
+              "displayName": "iinavefrii"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fb90e459-91be-41b4-8834-20dc101890f8",
+        "title": "TEAM MECHANT",
+        "color": "PINK",
+        "totalPoints": 421566,
+        "totalUsers": 44,
+        "ratio": 5.02,
+        "winner": true,
+        "topPredictors": [
+          {
+            "points": 124022,
+            "user": {
+              "id": "58364535",
+              "displayName": "Tiguru"
+            }
+          },
+          {
+            "points": 75000,
+            "user": {
+              "id": "114782839",
+              "displayName": "Ware03"
+            }
+          },
+          {
+            "points": 60000,
+            "user": {
+              "id": "122844754",
+              "displayName": "grisor"
+            }
+          },
+          {
+            "points": 25000,
+            "user": {
+              "id": "122702189",
+              "displayName": "moussa54"
+            }
+          },
+          {
+            "points": 10010,
+            "user": {
+              "id": "512272430",
+              "displayName": "kyerei"
+            }
+          },
+          {
+            "points": 10000,
+            "user": {
+              "id": "163370516",
+              "displayName": "veganpowa"
+            }
+          },
+          {
+            "points": 10000,
+            "user": {
+              "id": "69731304",
+              "displayName": "TontonTitou"
+            }
+          },
+          {
+            "points": 10000,
+            "user": {
+              "id": "185111693",
+              "displayName": "PurpIeace"
+            }
+          },
+          {
+            "points": 10000,
+            "user": {
+              "id": "83350009",
+              "displayName": "iPreludeR34"
+            }
+          },
+          {
+            "points": 9999,
+            "user": {
+              "id": "157657424",
+              "displayName": "Heir0ss"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,15 +1,15 @@
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { useQuery, gql } from '@apollo/client'
-import { Channel as ChannelFragments } from 'lib/fragments'
-import Page from 'components/Page'
-import Channel from 'components/Channel'
+import { Channel as ChannelFragments } from '@/lib/fragments'
+import Page from '@/components/Page'
+import Channel from '@/components/Channel'
 import {
   UserNotFound,
   UserError,
   UserLoading,
-} from 'components/UserActionMessage'
-import { PredictionNodes } from 'components/Prediction'
+} from '@/components/UserActionMessage'
+import { PredictionNodes } from '@/components/Prediction'
 
 const PREDICTIONS_QUERY = gql`
   ${ChannelFragments.Prediction}

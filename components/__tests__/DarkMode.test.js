@@ -7,11 +7,16 @@ test('Dark mode themes', async () => {
   // Should be dark mode
   expect(global.localStorage.getItem(LS_KEY)).toBe(THEME.DARK)
 
+  // Shoud have `dark` class
+  expect(
+    view.container.parentElement.parentElement
+      .querySelector('body')
+      .classList.contains(THEME.DARK)
+  ).toBe(true)
+
   // Should be light mode
   fireEvent.click(screen.getByRole('button'))
   expect(global.localStorage.getItem(LS_KEY)).toBe(THEME.LIGHT)
-
-  view.debug()
 })
 
 test('Set current theme from localstorage', async () => {

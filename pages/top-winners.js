@@ -3,14 +3,14 @@ import {
   initializeApollo,
   addApolloState,
   APP_IS_BUILDING,
-} from 'lib/apolloClient'
-import { formatThousands } from 'lib/helpers'
-import Page from 'components/Page'
+} from '@/lib/apolloClient'
+import { formatThousands } from '@/lib/helpers'
+import Page from '@/components/Page'
 import {
   UserNotFound,
   UserError,
   UserLoading,
-} from 'components/UserActionMessage'
+} from '@/components/UserActionMessage'
 
 const GET_TOP_WINNERS_QUERY = gql`
   query GetTopWinners {

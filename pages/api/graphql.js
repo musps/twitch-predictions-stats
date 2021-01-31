@@ -1,5 +1,5 @@
 import Cors from 'micro-cors'
-import createSever from 'lib/graphql'
+import createSever from '@/lib/graphql'
 
 const cors = Cors()
 const server = createSever()

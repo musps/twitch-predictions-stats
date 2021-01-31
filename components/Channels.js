@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { useQuery, NetworkStatus, gql } from '@apollo/client'
-import { InformationCard } from './InformationCards'
+import { useQuery, gql } from '@apollo/client'
 import { UserLoading, UserError } from './UserActionMessage'
 
 export const GET_CHANNELS_QUERY = gql`
@@ -41,25 +40,22 @@ function ChannelCard({ channel }) {
   )
 }
 
-function Channels({ login, children }) {
+function Channels({ limit }) {
   const { loading, error, data, variables, fetchMore } = useQuery(
     GET_CHANNELS_QUERY,
     {
       variables: {
         page: 1,
-        limit: 24,
+        limit,
       },
+      skip: !limit,
     }
   )
 
   const { channels } = data || {}
 
   const loadMore = () => {
-    const { hasNextPage, nextPage } = channels
-
-    if (!hasNextPage) {
-      return
-    }
+    const { nextPage } = channels
 
     fetchMore({
       variables: {
@@ -68,13 +64,12 @@ function Channels({ login, children }) {
       },
       updateQuery: (_, { fetchMoreResult }) => {
         const { channels } = fetchMoreResult
-        const previousDocs = data?.channels?.nodes || []
 
         return {
           ...fetchMoreResult,
           channels: {
             ...channels,
-            nodes: [...previousDocs, ...channels.nodes],
+            nodes: [...data.channels.nodes, ...channels.nodes],
           },
         }
       },

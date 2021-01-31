@@ -2,9 +2,11 @@ import {
   initializeApollo,
   addApolloState,
   APP_IS_BUILDING,
-} from 'lib/apolloClient'
-import Page from 'components/Page'
-import Channels, { GET_CHANNELS_QUERY } from 'components/Channels'
+} from '@/lib/apolloClient'
+import Page from '@/components/Page'
+import Channels, { GET_CHANNELS_QUERY } from '@/components/Channels'
+
+const QUERY_LIMIT = 24
 
 export async function getStaticProps() {
   const apolloClient = initializeApollo()
@@ -14,7 +16,7 @@ export async function getStaticProps() {
       query: GET_CHANNELS_QUERY,
       variables: {
         page: 1,
-        limit: 24,
+        limit: QUERY_LIMIT,
       },
     })
   }
@@ -28,7 +30,7 @@ export async function getStaticProps() {
 function ChannelsPage() {
   return (
     <Page title="Channels">
-      <Channels />
+      <Channels limit={QUERY_LIMIT} />
     </Page>
   )
 }
