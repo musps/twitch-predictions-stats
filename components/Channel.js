@@ -4,8 +4,8 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { gql, useQuery } from '@apollo/client'
-import { Channel as ChannelFragments } from 'lib/fragments'
-import { formatNumber, formatThousands, getMostPointsWon } from 'lib/helpers'
+import { Channel as ChannelFragments } from '@/lib/fragments'
+import { formatNumber, formatThousands, getMostPointsWon } from '@/lib/helpers'
 import { InformationCard, InformationsCard } from './InformationCards'
 import UserActionMessage, { UserLoading } from './UserActionMessage'
 
@@ -46,8 +46,8 @@ export const GET_CHANNEL_QUERY = gql`
   }
 `
 
-const openPrediction = (login, id) => {
-  Router.router.push(`/user/${login}/prediction/${id}`, undefined, {
+export const openPrediction = (login, id) => {
+  return Router.router.push(`/user/${login}/prediction/${id}`, undefined, {
     shallow: true,
   })
 }
@@ -59,6 +59,7 @@ function Channel({ login, children }) {
   })
 
   const { channel } = data || {}
+
   const mostWon = getMostPointsWon(channel?.stats?.mostWonEvent, false)
   const channelNotFound = !loading && !channel
 

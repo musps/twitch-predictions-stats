@@ -6,14 +6,15 @@
     "start": "next start",
     "prettier": "prettier --config .prettierrc --write \"{components,lib,pages}/**/*.js\"",
     "prettier:diff": "prettier --config .prettierrc --list-different \"{components,lib,pages}/**/*.js\"",
-    "fetcher": "node -r esm -r dotenv/config scripts/fetcher.js"
+    "fetcher": "node -r esm -r dotenv/config scripts/fetcher.js",
+    "test": "jest --watch"
   },
   "engines": {
     "node": ">=12.x <=14.x"
   },
   "license": "ISC",
   "dependencies": {
-    "@apollo/client": "^3.3.6",
+    "@apollo/client": "^3.3.7",
     "@tailwindcss/forms": "^0.2.1",
     "apollo-server-caching": "^0.5.3",
     "apollo-server-micro": "^2.19.2",
@@ -39,6 +40,12 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "jest-axe": "^4.1.0",
     "prettier": "^2.2.1"
   }
 }
