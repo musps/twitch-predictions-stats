@@ -307,7 +307,7 @@ function PredictionNode({ node, fullMode = false }) {
             <div className="p-3">
               <DescriptionItem
                 label="Created at"
-                value={dayjs(node.createdAt).format('MMMM Do YYYY, h:mm')}
+                value={dayjs(node.createdAt).format('MMMM D YYYY, h:mm')}
               />
 
               {createdBy.id && (
