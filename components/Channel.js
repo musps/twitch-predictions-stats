@@ -18,6 +18,7 @@ export const GET_CHANNEL_QUERY = gql`
     channel(login: $login) {
       id
       displayName
+      name
       url
       profileImageURL
       appCreatedAt
@@ -62,6 +63,8 @@ function Channel({ login, children }) {
 
   const mostWon = getMostPointsWon(channel?.stats?.mostWonEvent, false)
   const channelNotFound = !loading && !channel
+  const showName =
+    channel?.name === channel?.displayName.toLowerCase() ? null : channel.name
 
   return (
     <Fragment>
@@ -102,6 +105,7 @@ function Channel({ login, children }) {
           <div className="flex-grow flex flex-col space-y-2 justify-between md:flex-row md:space-y-0">
             <h1 className="flex flex-col text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
               {channel.displayName}
+              {showName && <span className="text-base">{showName}</span>}
             </h1>
 
             <a
