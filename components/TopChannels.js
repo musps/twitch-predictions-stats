@@ -9,6 +9,7 @@ export const GET_TOP_CHANNELS_QUERY = gql`
       id
       displayName
       profileImageURL
+      name
     }
   }
 `
@@ -30,7 +31,7 @@ function CardButton({ href, text, blank = false }) {
 
 function ChannelCard({ channel }) {
   return (
-    <Link href={`/user/${channel.displayName}`}>
+    <Link href={`/user/${channel.name}`}>
       <a
         title={`Go to ${channel.displayName} page`}
         className="bg-white p-4 transition-shadow border rounded-lg shadow-sm hover:shadow dark:border-gray-800 dark:bg-gray-800">

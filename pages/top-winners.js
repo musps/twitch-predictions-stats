@@ -19,6 +19,7 @@ const GET_TOP_WINNERS_QUERY = gql`
         id
         displayName
         profileImageURL
+        name
       }
       prediction {
         id
@@ -114,14 +115,14 @@ function TopWinnersPage() {
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900 dark:text-gray-400">
                           <a
-                            href={`/user/${item.channel.displayName}`}
+                            href={`/user/${item.channel.name}`}
                             target="_blank">
                             {item.channel.displayName}
                           </a>
                         </div>
                         <div className="text-sm text-gray-500">
                           <a
-                            href={`/user/${item.channel.displayName}/prediction/${item.prediction.id}`}
+                            href={`/user/${item.channel.name}/prediction/${item.prediction.id}`}
                             target="_blank">
                             View prediction
                           </a>

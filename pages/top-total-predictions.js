@@ -20,6 +20,7 @@ const GET_TOP_TOTAL_PREDICTIONS_QUERY = gql`
         id
         displayName
         profileImageURL
+        name
       }
     }
   }
@@ -95,7 +96,7 @@ function TopTotalPredictionsPage() {
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900 dark:text-gray-400">
                           <a
-                            href={`/user/${item.channel.displayName}`}
+                            href={`/user/${item.channel.name}`}
                             target="_blank">
                             {item.channel.displayName}
                           </a>

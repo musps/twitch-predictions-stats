@@ -12,9 +12,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en" className="dark">
         <Head>
-          {!IS_DEV && (
-            <script async src="https://cdn.splitbee.io/sb.js"></script>
-          )}
+          {!IS_DEV && <script async data-api="/_abc" src="/abc.js"></script>}
           <meta
             name="description"
             content="Twitch predictions stats - Find your favorite streamer predictions statistics!"
