@@ -10,10 +10,10 @@ export const THEME = {
 const setTheme = (enabled) => {
   if (enabled) {
     localStorage.setItem(LS_KEY, THEME.DARK)
-    document.querySelector('body').classList.add(THEME.DARK)
+    document.querySelector('html').classList.add(THEME.DARK)
   } else {
     localStorage.setItem(LS_KEY, THEME.LIGHT)
-    document.querySelector('body').classList.remove(THEME.DARK)
+    document.querySelector('html').classList.remove(THEME.DARK)
   }
 }
 

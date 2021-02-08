@@ -8,11 +8,9 @@ test('Dark mode themes', async () => {
   expect(global.localStorage.getItem(LS_KEY)).toBe(THEME.DARK)
 
   // Shoud have `dark` class
-  expect(
-    view.container.parentElement.parentElement
-      .querySelector('body')
-      .classList.contains(THEME.DARK)
-  ).toBe(true)
+  expect(document.querySelector('html').classList.contains(THEME.DARK)).toBe(
+    true
+  )
 
   // Should be light mode
   fireEvent.click(screen.getByRole('button'))
