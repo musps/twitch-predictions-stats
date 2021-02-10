@@ -23,20 +23,20 @@ function TableTopPredictors({ color, colorName }) {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-900 dark:border-gray-900">
-            {color.topPredictors.map((predictor, index) => (
+            {color.topPredictors.map(({ points, user }, index) => (
               <tr
                 className={cs('transition-all dark:bg-gray-800', {
                   'bg-gray-100': Boolean(index % 2),
                 })}
-                key={index}>
+                key={user.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900 dark:text-gray-400">
-                    {predictor.user?.displayName || 'Undefined user'}
+                    {user?.displayName || 'Undefined user'}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900 dark:text-gray-400">
-                    {predictor.points}
+                    {points}
                   </div>
                 </td>
               </tr>

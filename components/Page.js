@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import cs from 'classnames'
 import DarkMode from './DarkMode'
 
-const FastLink = ({ href, title, count, current }) => (
+export const FastLink = ({ href, title, count, current }) => (
   <li className="flex px-3 mx-1 text-center cursor-pointer last:mr-0 hover:bg-gray-200 dark:hover:bg-gray-800">
     <a
       href={href}

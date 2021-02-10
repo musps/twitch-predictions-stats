@@ -13,7 +13,7 @@ dayjs.extend(relativeTime)
 const IconBadgeCheck = () => (
   <span>
     <svg
-      className="mx-1 w-4 h-4 text-gray-500"
+      className="mx-1 w-4 h-4 text-gray-500 dark:text-white"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

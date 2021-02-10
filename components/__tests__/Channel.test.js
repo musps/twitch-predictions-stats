@@ -43,6 +43,38 @@ test('renders Channel', async () => {
   fireEvent.click(screen.getByText(/View on Twitch/i))
 })
 
+test('renders Channel with subname', async () => {
+  const _mockQueryResponse = [
+    {
+      request: {
+        query: GET_CHANNEL_QUERY,
+        variables: {
+          login: 'LIRIK',
+        },
+      },
+      result: {
+        data: {
+          channel: {
+            ...channel,
+            name: 'LIRIK--name',
+          },
+        },
+      },
+    },
+  ]
+
+  const view = render(
+    <MockedProvider mocks={_mockQueryResponse} addTypename={false}>
+      <Channel login="LIRIK" children={null} />
+    </MockedProvider>
+  )
+
+  await act(() => new Promise((resolve) => setTimeout(resolve, 0)))
+  screen.getByRole('heading', {
+    name: /LIRIK LIRIK--name/i,
+  })
+})
+
 test('renders Channel without stats', async () => {
   const login = 'LIRIK'
   const view = render(

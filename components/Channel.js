@@ -92,7 +92,7 @@ function Channel({ login, children }) {
       )}
       {channel && (
         <div className="flex flex-row items-start justify-between pb-6 space-x-4 border-b dark:border-gray-800 items-center">
-          <div className="relative w-24 h-24">
+          <div className="relative w-16 h-16 md:w-24 md:h-24">
             <img
               className="rounded-full border border-gray-100 dark:border-gray-800 shadow-sm"
               src={channel.profileImageURL}
@@ -122,7 +122,7 @@ function Channel({ login, children }) {
         <Fragment>
           <div className="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-4">
             <div className="lg:col-span-3 flex flex-grow flex-col">
-              <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="mb-6 grid gap-4 grid-flow-col overflow-y-scroll md:gap-6 md:grid-cols-3">
                 <InformationCard
                   title="Total Predictions"
                   value={channel.stats?.totalPredictions || 0}

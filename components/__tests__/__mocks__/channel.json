@@ -1,6 +1,7 @@
 {
     "id":23161357,
     "displayName":"LIRIK",
+    "name":"lirik",
     "url":"https://www.twitch.tv/lirik",
     "profileImageURL":"https://static-cdn.jtvnw.net/jtv_user_pictures/27fdad08-a2c2-4e0b-8983-448c39519643-profile_image-150x150.png",
     "appCreatedAt":"2021-01-18T02:13:17.539Z",
@@ -89,7 +90,7 @@
                 "points":203309,
                 "user":{
                     "id":"45194222",
-                    "displayName":"UnTaLk",
+                    "displayName": null,
                     "__typename":"UserPreview"
                 },
                 "__typename":"Prediction"

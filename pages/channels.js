@@ -14,6 +14,7 @@ export async function getStaticProps() {
   if (!APP_IS_BUILDING) {
     const response = await apolloClient.query({
       query: GET_CHANNELS_QUERY,
+
       variables: {
         page: 1,
         limit: QUERY_LIMIT,

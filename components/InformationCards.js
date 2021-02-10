@@ -42,7 +42,7 @@ export function InformationCard({ title, value }) {
   return (
     <a
       href="#"
-      className="p-4 transition-shadow border rounded-lg shadow-sm dark:border-gray-800 dark:bg-gray-800">
+      className="min-w-max p-4 transition-shadow border rounded-lg shadow-sm dark:border-gray-800 dark:bg-gray-800">
       <div className="flex items-start">
         <div className="flex flex-col flex-shrink-0 space-y-2">
           <span className="text-gray-400">{title}</span>

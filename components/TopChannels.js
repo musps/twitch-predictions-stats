@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { useQuery, NetworkStatus, gql } from '@apollo/client'
-import { InformationCard } from './InformationCards'
+import { useQuery, gql } from '@apollo/client'
 import { UserLoading, UserError } from './UserActionMessage'
 
 export const GET_TOP_CHANNELS_QUERY = gql`
