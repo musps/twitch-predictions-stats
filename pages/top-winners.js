@@ -113,7 +113,7 @@ function TopWinnersPage() {
                         />
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900 dark:text-gray-400">
+                        <div className="text-sm font-medium">
                           <a
                             href={`/user/${item.channel.name}`}
                             target="_blank">

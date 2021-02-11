@@ -3,13 +3,17 @@ import { useRouter } from 'next/router'
 import { useQuery, gql } from '@apollo/client'
 import { Channel as ChannelFragments } from '@/lib/fragments'
 import Page from '@/components/Page'
-import Channel from '@/components/Channel'
 import {
   UserNotFound,
   UserError,
   UserLoading,
 } from '@/components/UserActionMessage'
 import { PredictionNodes } from '@/components/Prediction'
+import {
+  initializeApollo,
+  addApolloState,
+  APP_IS_BUILDING,
+} from '@/lib/apolloClient'
 
 const PREDICTIONS_QUERY = gql`
   ${ChannelFragments.Prediction}
@@ -41,16 +45,45 @@ const parseFilter = (value = '', defautlValue = 'LATEST') => {
   return defautlValue
 }
 
-function UserPage() {
+export async function getStaticProps({ params }) {
+  const apolloClient = initializeApollo()
+  const { login } = params
+
+  if (!APP_IS_BUILDING) {
+    const response = await apolloClient.query({
+      query: PREDICTIONS_QUERY,
+      variables: {
+        login,
+        filter: parseFilter(),
+        page: 1,
+      },
+    })
+  }
+
+  return addApolloState(apolloClient, {
+    props: {
+      login,
+    },
+    revalidate: 1,
+  })
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
+function UserPage({ login }) {
   const router = useRouter()
-  const { login } = router.query
   const filter = parseFilter(router.query.filter)
 
   const { loading, error, data, fetchMore, variables, refetch } = useQuery(
     PREDICTIONS_QUERY,
     {
       variables: {
-        login: login,
+        login,
         filter,
         page: 1,
       },
@@ -93,8 +126,8 @@ function UserPage() {
     }
 
     router.push(
-      { pathname: '/user/[login]', query },
-      { pathname: `/user/${login}`, query },
+      { pathname: '/user/[login]/beta__embed', query },
+      { pathname: `/user/${login}/beta__embed`, query },
       { shallow: true }
     )
   }
@@ -102,12 +135,10 @@ function UserPage() {
   const { channel } = data || {}
 
   const renderData = () => {
-    if (loading) {
-      return <UserLoading />
-    }
     if (error) {
       return <UserError />
     }
+
     if (channel) {
       return (
         <Fragment>
@@ -127,35 +158,33 @@ function UserPage() {
             </label>
           </div>
 
-          <PredictionNodes nodes={channel.predictions.nodes} />
+          <PredictionNodes nodes={channel?.predictions?.nodes} />
 
-          {channel.predictions.hasNextPage && (
+          {channel?.predictions?.hasNextPage && (
             <button
               type="button"
-              className="inline-flex items-center justify-center p-3 bg-gray-200 rounded-md shadow hover:bg-opacity-20 dark:bg-gray-800"
+              className="w-full inline-flex items-center justify-center p-3 bg-gray-200 rounded-md shadow hover:bg-opacity-20 dark:bg-gray-800"
               onClick={loadMore}>
               Load more
             </button>
           )}
 
-          {channel.predictions.nodes.length !== 0 && (
-            <div className="md:col-span-2 lg:col-span-4 p-4">
-              <p className="text-center text-gray-400">
-                {channel.predictions.nodes.length} /{' '}
-                {channel.predictions.totalNodes}
-              </p>
-            </div>
-          )}
+          <div className="md:col-span-2 lg:col-span-4 p-4">
+            <p className="text-center text-gray-400">
+              {channel.predictions.nodes.length} /{' '}
+              {channel.predictions.totalNodes}
+            </p>
+          </div>
         </Fragment>
       )
     }
 
-    return <UserNotFound />
+    return <UserLoading />
   }
 
   return (
-    <Page title={login}>
-      <Channel login={login}>{renderData()}</Channel>
+    <Page title={login} embed>
+      {renderData()}
     </Page>
   )
 }

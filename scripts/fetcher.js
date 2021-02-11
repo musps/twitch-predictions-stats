@@ -14,8 +14,14 @@ import {
   updateChannelPredictionsGame,
   updateGames,
 } from '../lib/fetcher/features/fetch-games'
+import { requestChannels } from '../lib/fetcher/features/request-channels'
 
 const options = yargs
+  .option('r', {
+    alias: 'requestUsers',
+    describe: 'Add asked channels',
+    type: 'boolean',
+  })
   .option('p', {
     alias: 'predictions',
     describe: 'Update latest predictions',
@@ -59,6 +65,7 @@ async function init() {
 
     let res
     const {
+      requestUsers,
       videosAndGames,
       predictions,
       login,
@@ -69,6 +76,9 @@ async function init() {
     const isLogin = login !== null && login !== undefined
 
     switch (true) {
+      case requestUsers === true:
+        res = await requestChannels()
+        break
       case videosAndGames === true:
         switch (true) {
           case isLogin:
@@ -100,7 +110,9 @@ async function init() {
       case predictions === true:
         switch (true) {
           case isLogin && add:
-            res = await initializeChannel(login, false)
+            res = await initializeChannel({
+              name: login,
+            })
             break
           case isLogin && update:
             res = await updateChannelPredictions(login)

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useQuery, gql } from '@apollo/client'
 import { UserLoading, UserError } from './UserActionMessage'
+import { showChannelName } from '@/lib/helpers'
 
 export const GET_CHANNELS_QUERY = gql`
   query GetChannels($page: Int!, $limit: Int!) {
@@ -19,6 +20,8 @@ export const GET_CHANNELS_QUERY = gql`
 `
 
 function ChannelCard({ channel }) {
+  const showName = showChannelName(channel)
+
   return (
     <Link href={`/user/${channel.name}`}>
       <a
@@ -34,7 +37,14 @@ function ChannelCard({ channel }) {
               height="48"
             />
           </div>
-          <span className="text-gray-400 truncate">{channel.displayName}</span>
+          <div className="flex flex-col">
+            <span className="truncate">{channel.displayName}</span>
+            {showName && (
+              <span className="text-gray-400 text-sm truncate">
+                {channel.name}
+              </span>
+            )}
+          </div>
         </div>
       </a>
     </Link>

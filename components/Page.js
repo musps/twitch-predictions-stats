@@ -24,7 +24,7 @@ export const FastLink = ({ href, title, count, current }) => (
   </li>
 )
 
-function Page({ title, children }) {
+function Page({ title, children, embed = false }) {
   const router = useRouter()
 
   const searchUser = (event) => {
@@ -46,17 +46,23 @@ function Page({ title, children }) {
       </Head>
 
       <header className="flex-shrink-0 border-b dark:border-gray-800">
-        <div className="border-b shadow-bot dark:border-gray-800">
-          <ul className="flex flex-row px-2 list-none select-none overflow-y-scroll">
-            <FastLink title="Top winners" current={false} href="/top-winners" />
-            <FastLink
-              title="Top total predictions"
-              current={false}
-              href="/top-total-predictions"
-            />
-            <FastLink title="Channels" current={false} href="/channels" />
-          </ul>
-        </div>
+        {!embed && (
+          <div className="border-b shadow-bot dark:border-gray-800">
+            <ul className="flex flex-row px-2 list-none select-none overflow-y-scroll">
+              <FastLink
+                title="Top winners"
+                current={false}
+                href="/top-winners"
+              />
+              <FastLink
+                title="Top total predictions"
+                current={false}
+                href="/top-total-predictions"
+              />
+              <FastLink title="Channels" current={false} href="/channels" />
+            </ul>
+          </div>
+        )}
 
         <div className="grid grid-cols-3 space-y-2 p-4 items-center">
           <a
@@ -64,37 +70,40 @@ function Page({ title, children }) {
             className="col-span-2 md:col-span-1 items-center text-black dark:text-white">
             Twitch Predictions Stats
           </a>
+          {!embed && (
+            <div className="col-span-3 md:col-span-1 order-3 md:order-none col-span-1 items-center space-x-2 flex-1 flex mr-auto md:ml-5 w-full">
+              <div className="flex w-full">
+                <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
 
-          <div className="col-span-3 md:col-span-1 order-3 md:order-none col-span-1 items-center space-x-2 flex-1 flex mr-auto md:ml-5 w-full">
-            <div className="flex w-full">
-              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
+                <input
+                  type="text"
+                  onKeyDown={searchUser}
+                  className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 dark:bg-gray-800 dark:focus:bg-gray-900 dark:border-gray-800 dark:text-gray-200"
+                  name="search-twitch-account"
+                  aria-label="Search channel by name"
+                  placeholder="Search channel"
+                />
               </div>
-
-              <input
-                type="text"
-                onKeyDown={searchUser}
-                className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 dark:bg-gray-800 dark:focus:bg-gray-900 dark:border-gray-800 dark:text-gray-200"
-                name="search-twitch-account"
-                aria-label="Search channel by name"
-                placeholder="Search channel"
-              />
             </div>
-          </div>
-          <div className="flex justify-end">
-            <DarkMode />
-          </div>
+          )}
+          {!embed && (
+            <div className="flex justify-end">
+              <DarkMode />
+            </div>
+          )}
         </div>
       </header>
 

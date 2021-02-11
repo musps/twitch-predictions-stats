@@ -214,9 +214,11 @@ function PredictionNode({ node, fullMode = false }) {
   return (
     <div className="bg-white my-4 border dark:border-gray-800 rounded-lg transition-shadow shadow-sm hover:shadow-lg dark:bg-gray-800">
       <div className="flex shadow rounded-t-lg">
-        <h2 className="flex flex-col flex-grow p-3 bg-gray-100 text-lg font-bold rounded-tl-lg cursor-pointer dark:bg-gray-800">
+        <h2 className="leading-5 flex flex-col flex-grow p-3 bg-gray-100 text-lg font-bold rounded-tl-lg cursor-pointer dark:bg-gray-800">
           {node.title}
-          {game && <span className="text-xs font-medium">{game.name}</span>}
+          {game && (
+            <span className="pt-1 text-xs font-medium">{game.name}</span>
+          )}
           <span className="text-xs font-medium">
             {dayjs(node.createdAt).fromNow()}
           </span>
@@ -250,7 +252,7 @@ function PredictionNode({ node, fullMode = false }) {
             />
             <div className="flex flex-grow flex-col items-end">
               <span
-                className={`flex items-center lowercase text-${leftColor}-800`}>
+                className={`flex items-center lowercase text-${leftColor}-800 leading-5 pt-1`}>
                 {outcomes.blue.winner && <IconBadgeCheck />}
                 {outcomes.blue.title}
               </span>
@@ -274,7 +276,7 @@ function PredictionNode({ node, fullMode = false }) {
           <div className="flex flex-grow flex-row px-2">
             <div className="flex flex-grow flex-col">
               <span
-                className={`flex items-center lowercase text-${rightColor}-800`}>
+                className={`flex items-center lowercase text-${rightColor}-800 leading-5 pt-1`}>
                 {outcomes.pink.title}
                 {outcomes.pink.winner && <IconBadgeCheck />}
               </span>
@@ -357,7 +359,9 @@ export function PredictionNodes({ nodes = [], fullMode = false }) {
         <PredictionNode key={node.id} node={node} fullMode={fullMode} />
       ))}
 
-      {!nodes.length && <UserActionMessage message="No matches found" />}
+      {!nodes.length && (
+        <UserActionMessage message="No predictions available" />
+      )}
     </div>
   )
 }

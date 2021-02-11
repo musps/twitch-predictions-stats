@@ -1,13 +1,18 @@
 import { Fragment } from 'react'
 import Router from 'next/router'
-import Link from 'next/link'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { gql, useQuery } from '@apollo/client'
 import { Channel as ChannelFragments } from '@/lib/fragments'
-import { formatNumber, formatThousands, getMostPointsWon } from '@/lib/helpers'
+import {
+  formatNumber,
+  formatThousands,
+  getMostPointsWon,
+  showChannelName,
+} from '@/lib/helpers'
 import { InformationCard, InformationsCard } from './InformationCards'
 import UserActionMessage, { UserLoading } from './UserActionMessage'
+import RequestChannelButton from './RequestChannelButton'
 
 dayjs.extend(relativeTime)
 
@@ -62,9 +67,8 @@ function Channel({ login, children }) {
   const { channel } = data || {}
 
   const mostWon = getMostPointsWon(channel?.stats?.mostWonEvent, false)
+  const showName = showChannelName(channel)
   const channelNotFound = !loading && !channel
-  const showName =
-    channel?.name === channel?.displayName.toLowerCase() ? null : channel.name
 
   return (
     <Fragment>
@@ -79,14 +83,7 @@ function Channel({ login, children }) {
               If you wish to add this channel, you can request it
             </p>
 
-            <Link href={process.env.NEXT_PUBLIC_GOOGLE_FORM_ADD_CHANNEL}>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-gray-200 rounded hover:bg-opacity-20 dark:bg-gray-800">
-                Make a request
-              </a>
-            </Link>
+            <RequestChannelButton name={login} />
           </div>
         </Fragment>
       )}
@@ -105,7 +102,7 @@ function Channel({ login, children }) {
           <div className="flex-grow flex flex-col space-y-2 justify-between md:flex-row md:space-y-0">
             <h1 className="flex flex-col text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
               {channel.displayName}
-              {showName && <span className="text-base">{showName}</span>}
+              {showName && <span className="text-base">{channel.name}</span>}
             </h1>
 
             <a

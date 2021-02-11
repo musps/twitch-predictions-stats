@@ -25,6 +25,7 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "graphql": "^15.4.0",
+    "graphql-rate-limit": "^2.0.1",
     "graphql-request": "^3.4.0",
     "lodash": "^4.17.20",
     "micro-cors": "^0.1.1",

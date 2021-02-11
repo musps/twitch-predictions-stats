@@ -16,10 +16,7 @@ export const GET_TOP_CHANNELS_QUERY = gql`
 function CardButton({ href, text, blank = false }) {
   return (
     <Link href={href}>
-      <a
-        target={blank ? '_blank' : null}
-        rel={blank ? 'noreferrer' : null}
-        className="bg-white p-4 transition-shadow border rounded-lg shadow-sm hover:shadow dark:border-gray-800 dark:bg-gray-800">
+      <a className="bg-white p-4 transition-shadow border rounded-lg shadow-sm hover:shadow dark:border-gray-800 dark:bg-gray-800">
         <div className="flex items-center justify-center h-full">
           <span className="text-gray-400 font-bold">{text}</span>
         </div>
@@ -44,7 +41,7 @@ function ChannelCard({ channel }) {
               height="48"
             />
           </div>
-          <span className="text-gray-400 truncate">{channel.displayName}</span>
+          <span className="truncate">{channel.displayName}</span>
         </div>
       </a>
     </Link>
@@ -63,11 +60,6 @@ function TopChannels({ login, children }) {
       {error && <UserError />}
       {topChannels.length !== 0 && (
         <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2 lg:grid-cols-4">
-          <CardButton
-            text="Add your channel"
-            href={process.env.NEXT_PUBLIC_GOOGLE_FORM_ADD_CHANNEL}
-            blank={true}
-          />
           {topChannels.map((channel) => (
             <ChannelCard key={channel.id} channel={channel} />
           ))}

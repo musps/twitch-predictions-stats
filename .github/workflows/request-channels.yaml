@@ -1,0 +1,22 @@
+name: Handle request channels
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */2 * * *'
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install --only=prod
+      - name: Handle request channels
+        run: npm run fetcher -- -r
+        env:
+          MONGO_STRING: ${{ secrets.MONGO_STRING }}
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TPS_ENDPOINT: ${{ secrets.TPS_ENDPOINT }}
+          TPS_AUTH_CACHE: ${{ secrets.TPS_AUTH_CACHE }}
